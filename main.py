@@ -4,8 +4,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn import svm
 from sklearn.metrics import accuracy_score 
-from lazypredict.Supervised import LazyClassifier
-from xgboost import XGBClassifier
+from lazypredict.Supervised import LazyClassifier # arch -x86_64 brew install libomp
 
 dataset = pd.read_csv("./diabetes.csv")
 
@@ -51,7 +50,7 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, shuffle=True, test_siz
 #print(input_prediction)
 
 clf = LazyClassifier(verbose=0,ignore_warnings=True, custom_metric=None)
-classi = clf.fit(X_train, Y_train)
+models,predictions = clf.fit(X_train, X_test, Y_train, Y_test)
 
 print(models)
 
